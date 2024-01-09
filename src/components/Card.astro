@@ -1,4 +1,6 @@
 ---
+import Stat from "./Stat.astro";
+
 export interface Props {
   avatar: string;
   name: string;
@@ -15,7 +17,8 @@ export interface UserMetrics {
 const { avatar, name, age, city, userMetrics } = Astro.props;
 ---
 
-<article class="w-[350px] bg-white flex flex-col items-center z-50 rounded-2xl rounded-t-3xl">
+<article
+  class="w-[350px] bg-white flex flex-col z-50 rounded-2xl rounded-t-3xl">
   <div class="flex justify-center relative">
     <img
       src="images/bg-pattern-card.svg"
@@ -27,12 +30,28 @@ const { avatar, name, age, city, userMetrics } = Astro.props;
       class="absolute bottom-0 translate-y-1/2 rounded-full outline outline-white outline-[5px]"
     />
   </div>
-  <div class="flex flex-col items-center gap-1 mt-12 p-5">
-    <div class="flex gap-2">
-      <h2>{name}</h2>
-      <span>{age}</span>
+
+  <div class="flex flex-col items-center gap-1 mt-12 py-5 border-b ">
+    <div class="flex gap-2 items-center">
+      <h2 class="font-bold text-lg">{name}</h2>
+      <span class="opacity-65">{age}</span>
     </div>
-    <span>{city}</span>
+
+    <span class="opacity-65 text-sm">{city}</span>
   </div>
-  <div></div>
+
+  <div class=" flex items-center justify-center w-full p-6">
+    <Stat
+      value={userMetrics.followers}
+      title="Followers"
+    />
+    <Stat
+      value={userMetrics.likes}
+      title="Likes"
+    />
+    <Stat
+      value={userMetrics.photos}
+      title="Photos"
+    />
+  </div>
 </article>
